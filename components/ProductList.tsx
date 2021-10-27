@@ -6,7 +6,7 @@ interface IProductListProps {
 
 export default function ProductList(props: IProductListProps) {
     return (
-        <div>
+        <div className="product-list">
             {props.products.map((product, index) => <Product key={index} product={product} />)}
         </div>
     )
