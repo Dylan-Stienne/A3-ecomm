@@ -1,8 +1,10 @@
+import React, { useState } from 'react';
 import Head from 'next/head'
 import Script from 'next/script'
 import Contact from '../components/Contact'
 import Jumbotron from '../components/Jumbotron'
 import ProductList from '../components/ProductList'
+import ModalAccessCart from '../components/ModalAccessCart'
 import { IProduct } from '../components/Product'
 import { GetStaticProps } from 'next'
 import iphone from '../public/logo.png'
@@ -12,6 +14,8 @@ interface IProductListProps {
 }
 
 export default function Home({ products}: IProductListProps ) {
+  const [modalOpened, setModalOpened] = useState(false)
+
   return (
     <div>
       <Head>
@@ -27,8 +31,9 @@ export default function Home({ products}: IProductListProps ) {
 
 
       <main>
+        <ModalAccessCart show={modalOpened} onClose={() => setModalOpened(false)}/>
         <Jumbotron />
-        <ProductList products={products} />
+        <ProductList products={products} onAddProductToCart={() => setModalOpened(true)}/>
         <Contact />
       </main>
 

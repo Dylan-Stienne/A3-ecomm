@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import styles from "../styles/Product.module.scss"
 import Image from "next/image"
 
@@ -11,10 +12,12 @@ export interface IProduct {
 }
 
 interface IProductProps {
-    product: IProduct
+    product: IProduct,
+    onAddProductToCart: Function
 }
 
 const Product = (props: IProductProps) => {
+
     return (
         <div className={styles.product}>
             <h2 className={styles.product__title}>{props.product.name}</h2>
@@ -27,6 +30,7 @@ const Product = (props: IProductProps) => {
                     ${props.product.price.toFixed(2)}
                 </div>
                 <button
+                    onClick={() => props.onAddProductToCart()}
                     className={`snipcart-add-item ${styles.product__button}`}
                     data-item-id={props.product.id}
                     data-item-name={props.product.name}
